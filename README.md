@@ -1,18 +1,13 @@
-# Memoize Library (Task 3)
-
-This library implements a configurable memoization decorator with the following features:
-
-- ✅ LRU (Least Recently Used)
-- ✅ LFU (Least Frequently Used)
-- ✅ Time-Based Expiry
-- ✅ Custom Eviction Policy
-
-## Usage
+## Example
 
 ```python
 from memoize import memoize
+import time
 
-@memoize(max_size=5, policy='LRU')
-def add(a, b):
-    return a + b
-```
+@memoize(max_size=3, policy='LFU')
+def slow_square(n):
+    time.sleep(1)
+    return n * n
+
+for i in [2, 3, 2, 4, 5, 2, 3]:
+    print(f"slow_square({i}) = {slow_square(i)}")
